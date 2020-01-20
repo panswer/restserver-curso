@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 /* GET */
 app.get('/usuario', (req, res) => {
-    res.send('Hola mundo ');
+    res.send('Hola mundo local');
 });
 
 /* POST: Crear registros */
