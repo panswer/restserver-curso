@@ -1,7 +1,7 @@
 require('../server/config/config');
 
-const express = require('express'),
-    bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 let app = express();
 
@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
-
 
 app.get('/', (req, res) => {
     res.json('Hellow World');
@@ -50,16 +49,9 @@ app.delete('/usuario', (req, res) => {
 });
 
 app.listen(process.env.PORT, err => {
-    if (err) {
-        console.log(`Error en inicio de servidor: ${err}`)
-    } else {
-        console.log(`Server on port: ${process.env.PORT}`);
-    }
+    // if (err) {
+    //     console.log(`Error en inicio de servidor: ${err}`)
+    // } else {
+    //     console.log(`Server on port: ${process.env.PORT}`);
+    // }
 });
-
-/* Descencryptado de token */
-/* function parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace('-', '+').replace('_', '/');
-    return JSON.parse(window.atob(base64));
-} */

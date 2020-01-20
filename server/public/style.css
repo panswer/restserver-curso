@@ -1,0 +1,12 @@
+.caja-form {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 250px;
+    height: 250px;
+    border: 1px solid black;
+}
