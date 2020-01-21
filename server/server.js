@@ -12,13 +12,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(require('./routes/usuario'))
+//Configuracion global de rutas
+app.use(require('./routes/index'));
 
 let addressDB = 'mongodb+srv://cafe:Maiz.10@cluster0-bxlqf.mongodb.net/cafe?retryWrites=true&w=majority';
 let localhostDB = 'mongodb://localhost:27017/cafe'
 
-mongoose.connect(process.env.URLDB, (err, res) => {
-    if (err) throw err;
+mongoose.connect(process.env.NODE_ENV, (err, res) => {
+    if (err) throw err('Error en puerto');
     else console.log(`Base de datos ONLINE`);
 });
 
