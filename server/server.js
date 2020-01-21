@@ -1,7 +1,8 @@
 require('../server/config/config');
 
 const express = require('express'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
 
 let app = express();
 
@@ -11,42 +12,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.use(require('./routes/usuario'))
 
-app.get('/', (req, res) => {
-    res.json('Hellow World');
-});
+let addressDB = 'mongodb+srv://cafe:Maiz.10@cluster0-bxlqf.mongodb.net/cafe?retryWrites=true&w=majority';
+let localhostDB = 'mongodb://localhost:27017/cafe'
 
-/* GET */
-app.get('/usuario', (req, res) => {
-    res.send('Hola mundo local');
-});
-
-/* POST: Crear registros */
-app.post('/usuario', (req, res) => {
-    let body = req.body;
-    if (body.nombre == undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesario'
-        });
-    } else {
-        res.json({
-            body
-        });
-    }
-});
-
-/* PUT: Actualizar datos */
-app.put('/usuario/:id', (req, res) => {
-    let id = req.params.id;
-    res.json({
-        id
-    });
-});
-
-/* DELETE */
-app.delete('/usuario', (req, res) => {
-    res.json('delet usuario');
+mongoose.connect(process.env.URLDB, (err, res) => {
+    if (err) throw err;
+    else console.log(`Base de datos ONLINE`);
 });
 
 app.listen(process.env.PORT, err => {
