@@ -2,7 +2,8 @@ require('../server/config/config');
 
 const express = require('express'),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    path = require('path');
 
 let app = express();
 
@@ -12,11 +13,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+//Parse application/json
+app.use(express.static(path.resolve(__dirname, '../public')));
 //Configuracion global de rutas
 app.use(require('./routes/index'));
 
 let addressDB = 'mongodb+srv://cafe:Maiz.10@cluster0-bxlqf.mongodb.net/cafe?retryWrites=true&w=majority';
 let localhostDB = 'mongodb://localhost:27017/cafe'
+
+/* app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, ('/public/index.html')));
+}); */
 
 mongoose.connect(process.env.NODE_ENV, (err, res) => {
     if (err) throw err('Error en puerto');

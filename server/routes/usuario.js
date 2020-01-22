@@ -5,9 +5,9 @@ const Usuario = require('../models/usuario');
 const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticacion');
 const app = express();
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
     res.json('Hellow World');
-});
+}); */
 
 /* GET */
 app.get('/usuario', verificaToken, (req, res) => {
