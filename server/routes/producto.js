@@ -213,8 +213,8 @@ app.put('/productos/:id', verificaToken, (req, res) => {
         let upDateProducto = {
             nombre: req.body.nombre ? req.body.nombre : productoDB.nombre,
             precioUni: req.body.precioUni ? req.body.precioUni : productoDB.precioUni,
-            descripcion: req.body.disponible,
-            disponible: req.body.disponible ? req.body.descripcion : productoDB.disponible,
+            descripcion: req.body.descripcion ? req.body.descripcion : productoDB.descripcion,
+            disponible: req.body.disponible,
             categoria: req.body.categoria ? req.body.categoria : productoDB.categoria,
             producto: req.body.producto ? req.body.producto : productoDB.producto
         }
