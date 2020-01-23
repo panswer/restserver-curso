@@ -209,12 +209,11 @@ app.put('/productos/:id', verificaToken, (req, res) => {
                 }
             });
         }
-        console.log(req.body.disponible == null ? 'null' : 'dato');
         let upDateProducto = {
             nombre: req.body.nombre ? req.body.nombre : productoDB.nombre,
             precioUni: req.body.precioUni ? req.body.precioUni : productoDB.precioUni,
             descripcion: req.body.descripcion ? req.body.descripcion : productoDB.descripcion,
-            disponible: req.body.disponible,
+            disponible: req.body.disponible == null ? productoDB.disponible : req.body.disponible,
             categoria: req.body.categoria ? req.body.categoria : productoDB.categoria,
             producto: req.body.producto ? req.body.producto : productoDB.producto
         }
